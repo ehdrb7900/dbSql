@@ -78,5 +78,23 @@ SELECT '사용자 아이디 : ' , userid
 FROM users;
 
 -- 실습 sel_conl]
-SELECT 'SELECT * FROM ' || table_name QUERY
+SELECT 'SELECT * FROM ' || table_name || ';' QUERY
 FROM user_tables;
+
+-- desc table
+-- 테이블에 정의된 컬럼을 알고 싶을 때
+-- 1.desc
+DESC emp;
+-- 2.select * from '테이블'
+SELECT * 
+FROM emp;
+
+-- WHERE절, 조건 연산자
+SELECT * 
+FROM users
+WHERE userid = 'brown';
+
+--usernm이 샐리인 데이터를 조회하는 쿼리를 작성
+SELECT *
+FROM users
+WHERE usernm = '샐리';
