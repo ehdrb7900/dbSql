@@ -90,7 +90,7 @@ SELECT *
 FROM emp;
 
 -- WHERE절, 조건 연산자
-SELECT * 
+SELECT *
 FROM users
 WHERE userid = 'brown';
 
