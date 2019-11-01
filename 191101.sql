@@ -192,5 +192,5 @@ SELECT CONCAT('HELLO', ', WORLD') CONCAT,
         LPAD('HELLO, WORLD', 15, '*') lpad,
         LPAD('HELLO, WORLD', 15) lpad,
         LPAD('HELLO, WORLD', 15, ' ') lpad,
-        RPAD('HELLO, WORLD', 15, '*') rpad,
+        RPAD('HELLO, WORLD', 15, '*') rpad
 FROM dual;
