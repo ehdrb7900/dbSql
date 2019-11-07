@@ -139,3 +139,24 @@ WHERE a.sal BETWEEN b.losal AND b.hisal;
 
 SELECT a.empno, a.ename, a.sal, b.*
 FROM emp a JOIN salgrade b ON(a.sal BETWEEN b.losal AND b.hisal);
+
+-- non_equijoin
+SELECT empno, ename, dept.deptno
+FROM emp, dept
+WHERE emp.deptno != dept.deptno
+   AND empno = 7369;
+   
+-- 데이터 결합 실습 join 0
+-- emp, dept 테이블을 이용하여 다음과 같이 조회되도록 쿼리를 작성하세요
+SELECT empno, ename, a.deptno, dname
+FROM emp a, dept b
+WHERE a.deptno = b.deptno
+ORDER BY a.deptno;
+
+-- 데이터 결합 실습 join0_1
+-- emp, dept 테이블을 이용하여 다음과 같이 조회되도록 쿼리를 작성하세요
+-- (부서번호가 10, 30인 데이터만 조회)
+SELECT empno, ename, a.deptno, dname
+FROM emp a, dept b
+WHERE a.deptno = b.deptno
+  AND a.deptno in (10, 30);
