@@ -116,14 +116,23 @@ FROM customer cus, product p, (SELECT cid, pid, SUM(cnt) cnt
                                 GROUP BY cid, pid) cy
 WHERE cus.cid = cy.cid
   AND cy.pid = p.pid;
+  
+  SELECT cid, pid, SUM(cnt) cnt
+                                FROM cycle
+                                GROUP BY cid, pid;
+                                
+SELECT * FROM CUSTOMER;
+SELECT * FROM PRODUCT;
+SELECT * FROM CYCLE ORDER BY CID, PID, DAY;
 
+--------------------------------------------------------------------
 SELECT cus.cid, cnm, p.pid, pnm, SUM(cnt) cnt
 FROM cycle cy, customer cus, product p
 WHERE cus.cid = cy.cid
   AND cy.pid = p.pid
 GROUP BY cy.cid, cy.pid, cus.cid, cnm, p.pid, pnm
 ORDER BY cid, pid;
-
+--------------------------------------------------------------------
 with cycle_groupby as (
     SELECT cid, pid, SUM(cnt) cnt
     FROM cycle
