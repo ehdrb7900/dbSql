@@ -176,20 +176,22 @@ WHERE pid IN (SELECT pid
    AND cid = 1;
    
 -- 서브쿼리 실습 sub 7
-SELECT 1, 'brown' cnm, pid, (SELECT pnm FROM product WHERE pid = cycle.pid) pnm, day, cnt
-FROM cycle
+SELECT 1, cnm, pid, (SELECT pnm FROM product WHERE pid = cycle.pid) pnm, day, cnt
+FROM cycle, customer
 WHERE pid IN (SELECT pid
                 FROM cycle
                 WHERE cid = 2)
-  AND cid = 1;
+  AND cycle.cid = 1
+  AND cycle.cid = customer.cid;
 
-SELECT 1, 'brown' cnm, c.pid, p.pnm, day, cnt
-FROM cycle c, product p
+SELECT 1, cnm, c.pid, p.pnm, day, cnt
+FROM cycle c, product p, customer
 WHERE c.pid IN ( SELECT pid
                 FROM cycle
                 WHERE cid = 2)
   AND c.pid = p.pid
-  AND cid = 1;
+  AND c.cid = 1
+  AND customer.cid = c.cid;
 
 -- EXISTS MAIN 쿼리의 컬럼을 사용해서 SUBQUERY에 만족하는 조건이 있는지 체크
 -- 만족하는 값이 하나라도 존재하면 더이상 진행하지 않고 멈추기 때문에
