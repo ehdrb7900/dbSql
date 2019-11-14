@@ -67,7 +67,7 @@ DROP TABLE emp_test;
 DROP TABLE dept_test;
 
 CREATE TABLE dept_test(
-    deptno NUMBER(2), /* PRIMARY KEY --> UNIQUE 제약 X --> 인덱스 생성 X */
+    deptno NUMBER(2) UNIQUE, /* PRIMARY KEY --> UNIQUE 제약 X --> 인덱스 생성 X */
     dname VARCHAR2(14),
     loc VARCHAR2(13)
 );
