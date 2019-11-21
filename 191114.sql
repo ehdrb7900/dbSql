@@ -134,9 +134,49 @@ SELECT *
 FROM post
 WHERE post_id = 1;
 
+-- 시퀀스 복습
+-- 시퀀스 : 중복되지 않는 정수 값을 리턴해주는 객체
+-- 1, 2, 3.....
+
+DESC emp_test;
+SELECT * FROM emp_test;
+DROP TABLE emp_test;
+CREATE TABLE emp_test (
+    emp NUMBER(4) PRIMARY KEY,
+    ename VARCHAR2(15)
+);
+
+CREATE SEQUENCE seq_emp_test;
+
+INSERT INTO emp_test VALUES (seq_emp_test.nextval, 'brown');
+
+SELECT *
+FROM emp_test;
+
+
 -- index
 -- rowid : 테이블 행의 물리적 주소, 해당 주소를 알면 빠르게 테이블에
 --          접근하는 것이 가능하다
 SELECT product.*, ROWID
 FROM product
 WHERE ROWID = 'AAAFMCAAFAAAAFNAAA';
+
+-- table : pid, pnm
+-- pk_product : pid
+SELECT pid
+FROM product
+WHERE ROWID = 'AAAFMCAAFAAAAFNAAA';
+
+-- 실행계획을 통한 인덱스 사용여부 확인
+-- emp 테이블에 empno 컬럼을 기준으로 인덱스가 없을 때
+ALTER TABLE emp DROP CONSTRAINT pk_emp;
+
+EXPLAIN PLAN FOR
+SELECT *
+FROM emp
+WHERE empno = 7369;
+
+-- 인덱스가 없기 때문에 empno = 7369인 데이터를 찾기 위해
+-- emp 테이블을 전체를 찾아봐야한다 => TABLE FULL SCAN
+
+SELECT * FROM TABLE(dbms_xplan.display);
